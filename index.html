@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/dracula.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+      /* This is where all your custom CSS rules will go. */
+      /* For example, the two-column layout: */
+
+      .two-column-layout {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .column {
+        flex: 1;
+      }
+
+      .column-small {
+        flex: 1;
+      }
+
+      /* A class for the image column, taking up 2 parts of the space */
+      .column-large {
+        flex: 2;
+        /* This makes it twice as wide as .column-small */
+      }
+
+      .column-text {
+        text-align: left;
+      }
+
+      /* You can also add your other styles here, like the aligned list */
+      .aligned-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid #444;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .aligned-list .label {
+        text-align: left;
+      }
+
+      .aligned-list .value {
+        font-weight: bold;
+        min-width: 60px;
+        text-align: right;
+      }
+
+      .formula-display {
+        background-color: #282a36;
+        /* Dark background from Dracula theme */
+        border: 1px solid #44475a;
+        border-radius: 6px;
+        padding: 0.5em 1em;
+        /* Vertical and horizontal padding */
+        margin: 1em auto;
+        /* Vertical margin, and auto centers it horizontally */
+        text-align: center;
+        font-family: monospace;
+        /* Use a code-style font */
+        font-size: 1.1em;
+        width: 80%;
+      }
+
+      .results-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Creates two columns of equal width */
+        gap: 5px;
+        /* The space between your images */
+        width: 90%;
+        /* How much of the slide the grid should fill */
+        margin: 5px auto 0;
+        /* Adds space above the grid and centers it */
+      }
+
+      .results-grid img {
+        /* ... keep your border, border-radius, etc. ... */
+        width: 80%;
+        height: auto;
+        border: 2px solid #6272a4;
+        border-radius: 8px;
+
+        /* Add these two lines to center the image within its grid cell */
+        display: block;
+        margin: 0 auto;
+      }
+
+      .slide-column-layout {
+        display: flex;
+        flex-direction: column;
+        /* Stacks children vertically */
+        justify-content: flex-start;
+        /* Aligns content to the top */
+        height: 100%;
+      }
+
+      /* A reusable class for subtitles under a header */
+      .slide-subtitle {
+        font-size: 0.75em;
+        /* Makes the font smaller */
+        margin-bottom: 0px;
+        /* Adds space between the text and the grid */
+      }
+
+      .grid-item {
+        /* We don't need flexbox here. Block elements will stack naturally. */
+        text-align: center;
+        /* This will center the caption text */
+      }
+
+      /* The image caption, styled as a header */
+      .image-caption {
+        font-size: 0.6em;
+        font-weight: bold;
+        color: #f8f8f2;
+
+        margin: 0 0 5px 0;
+        /* (Top, Right, Bottom, Left) */
+      }
+
+      /* Style for the visible image caption (now ABOVE the image) */
+      .image-caption {
+        font-size: 0.6em;
+        font-weight: bold;
+        color: #f8f8f2;
+        /* CHANGE: Use margin-bottom to create space between the text and the image below it */
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h3>Insamling, databehandling och analys TMS-EEG</h3>
+          <h4>2v, 3m och exempel på 6-8m</h4>
+          <p>
+            <small>Alexander Engelmark </small>
+          </p>
+        </section>
+
+        <!-- SLIDE 2: Introduction -->
+        <section>
+          <h4 style="position: absolute; top: -190px; left: -100px">
+            Datainsamling och datakvalité
+          </h4>
+          <ul
+            style="
+              position: absolute;
+              top: -100px;
+              left: -100px;
+              font-size: 0.5em;
+            "
+          >
+            <li class="fragment">
+              Det tog ca 3 piloter innan vi fick rimlig datakvalité
+            </li>
+            <li class="fragment">
+              När mössa, impedans och andra förberedelser fungerade bra så blev
+              det stor skillnad i signalkvalité
+            </li>
+            <li class="fragment">
+              <span class="label">Bra av 2 veckor gamla (vakna):</span>
+              <span class="value">35%</span>
+            </li>
+            <li class="fragment">
+              <span class="label">Bra av 2 veckor gamla (sovande):</span>
+              <span class="value">55%</span>
+            </li>
+            <li class="fragment">
+              <span class="label">Bra av 3 månader gamla (vakna):</span>
+              <span class="value">71%</span>
+            </li>
+            <li class="fragment">
+              <span class="label">Bra av 3 månader gamla (sovande):</span>
+              <span class="value">64%</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- SLIDE 3: Methodology Overview / Flowchart -->
+        <section>
+          <h4 style="position: absolute; top: -190px; left: -100px">
+            Datainsamling och datakvalité
+          </h4>
+          <p></p>
+          <img
+            src="/images/2v_vs_3m_grag.png"
+            style="width: 80%; border: none; box-shadow: none"
+          />
+        </section>
+
+        <section>
+          <div class="two-column-layout">
+            <div class="column column-text">
+              <h4>Hur vet vi att data vi samlar in ser rimlig ut?</h4>
+              <ul style="font-size: 0.6em">
+                <li class="fragment">
+                  rt-TEP från Silvia Casarotto används under registreringen
+                  Casarotto et al., 2022
+                </li>
+                <li class="fragment">
+                  Jag har tränat med Mario Rosanova och Silvia Casarotto i
+                  Helsingfors på detta
+                </li>
+                <li class="fragment">
+                  Det krävs en del teknik för att få bra SNR
+                </li>
+              </ul>
+            </div>
+
+            <div class="column-large">
+              <img
+                class="fragment"
+                src="images/Magnus_vaken_PCIst_36_.png"
+                style="width: 100%"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4: Preprocessing Pipeline (Vertical Slides) -->
+        <section>
+          <section>
+            <h3>Databehandling</h3>
+            <p>Minimal efterbehandling</p>
+          </section>
+          <section>
+            <h3>Steg 1: TMS-artefakt tas bort</h3>
+            <ul>
+              <li class="fragment">-5 - 25 ms runt pulsen klipps bort</li>
+              <li class="fragment">
+                Interpolering med cubic spline Rogasch et al., 2016
+              </li>
+              <li class="fragment">-2 - 15 ms brukar räcka för vuxna</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Steg 2: Dåliga kanaler identifieras</h3>
+            <ul>
+              <li class="fragment">
+                Automatiskt med FASTER-algoritmen Nolan et al., 2011 eller
+                manuellt
+              </li>
+              <li class="fragment">Stor fördel med 64 kanaler</li>
+              <li class="fragment">
+                Spline interpolering kan göras innan statistisk analys
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Steg 3: Filter</h3>
+            <ul>
+              <li class="fragment">
+                Bandpassfilter 2-40 Hz finit-impuls-respons i två riktningar
+              </li>
+              <li class="fragment">
+                Widmann et al., 2014 rekommenderar FIR-filter för
+                elektrofysiologisk data
+              </li>
+              <li class="fragment">Notch-filter på 50 Hz</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Step 4: Epoker</h3>
+            <ul>
+              <li class="fragment">
+                Datan delades upp i epoker (segment) från -1 sekund före till +1
+                sekund efter varje TMS-puls
+              </li>
+              <li class="fragment">
+                En linjär trend korrigerades för i varje enskild epok
+              </li>
+              <li class="fragment">
+                Dåliga epoker identifierades med FASTER-algoritmen
+              </li>
+              <li class="fragment">
+                Värt att nämna är att man kan kasta bort många epoker utan att
+                tappa ett stabilt medelvärde hos vuxna
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- SLIDE 5: Analysis Steps (Vertical Slides) -->
+        <!-- SLIDE 5: Analysis Steps (Vertical Slides) -->
+        <section>
+          <section>
+            <h2>Dataanalys</h2>
+            <p>Evoked potentials och PCIst.</p>
+            <aside class="notes">Kort om dessa metoder</aside>
+          </section>
+
+          <!-- Slide 1: Evoked Potential (Averaging) -->
+          <section>
+            <h3>1. Medelvärde över epoker</h3>
+            <p style="margin-bottom: 2em">
+              Signalen medelvärdesbildas över N epoker för varje kanal (c) och
+              tidpunkt (t).
+            </p>
+            <!-- Use our new custom class instead of pre/code -->
+            <div class="formula-display fragment">
+              V<sub>c</sub>(t) = (1/N) &sum; v<sub>i,c</sub>(t)
+            </div>
+            <div style="margin-top: 2em; font-size: 0.7em">
+              <p class="fragment">
+                <b>V<sub>c</sub>(t)</b>: Evoked svar (den slutgiltiga signalen i
+                µV )
+              </p>
+              <p class="fragment"><b>N</b>: Antal epoker</p>
+            </div>
+          </section>
+
+          <!-- Slide 2: Global Field Power -->
+          <section>
+            <h3>2. Global Field Power (GFP)</h3>
+            <p style="margin-bottom: 2em">
+              Standardavvikelsen över alla K kanaler vid varje tidpunkt (t).
+            </p>
+            <!-- Use our new custom class here as well -->
+            <div class="formula-display fragment">
+              GFP(t) = &radic;[ (1/K) &sum; (V<sub>c</sub>(t) - &mu;(t))&sup2; ]
+            </div>
+            <div style="margin-top: 2em; font-size: 0.7em">
+              <p class="fragment">
+                <b>GFP(t)</b>: Den totala fältstyrkan över tid
+              </p>
+              <p class="fragment"><b>K</b>: Antal kanaler</p>
+            </div>
+          </section>
+
+          <!-- Slide for PCIst Calculation -->
+          <section>
+            <h3>PCIst: uträkning</h3>
+            <ul
+              style="text-align: left; font-size: 0.65em; list-style-type: none"
+            >
+              <!-- Step 1: Dimensionality Reduction -->
+              <li class="fragment">
+                <b>1. Dimensionalitetsreduktion (SVD)</b>
+                <ul style="font-size: 0.9em">
+                  <li>
+                    Principala komponenter (PC) som förklarar >99% av variansen
+                    i data väljs ut.
+                  </li>
+                  <li>
+                    Utvalda komponenter måste också ha Signal-to-Noise Ratio >
+                    1.1.
+                  </li>
+                  <pre><code style="font-size: 0.9em;">SNR = Kraft(Respons) / Kraft(Baselinje)</code></pre>
+                </ul>
+              </li>
+              <!-- Step 2: State Transitions -->
+              <li class="fragment">
+                <b>2. Kvantifiering av state transitions</b>
+                <ul style="font-size: 0.9em">
+                  <li>
+                    Ett optimalt tröskelvärde (ε*) letas fram för att maximera
+                    skillnaden (ΔNST) mellan respons och baselinje state
+                    transitions.
+                  </li>
+                  <pre><code style="font-size: 0.9em;">&Delta;NST = NST_resp - k &times; NST_base</code></pre>
+                  <li>
+                    Där <i>k</i> är en bruskontrollsparameter (t.ex, 1.2).
+                  </li>
+                </ul>
+              </li>
+              <!-- Step 3: PCIst Calculation -->
+              <li class="fragment">
+                <b>3. PCIst</b>
+                <ul style="font-size: 0.9em">
+                  <li>
+                    PCIst är summan av alla positiva ΔNST värden övers alla
+                    <i>n</i> utselekterade komponenter.
+                  </li>
+                  <pre><code style="font-size: 0.9em;">PCIst = &sum; &Delta;NST_n &nbsp; (for &Delta;NST_n > 0)</code>
+								</pre>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- SLIDE 6: Results -->
+        <section class="slide-column-layout">
+          <h4>Resultat</h4>
+          <p class="slide-subtitle">Evoked potentials med bra signalkvalité</p>
+
+          <div class="results-grid">
+            <!-- Item 1: Top-Left -->
+            <div class="grid-item fragment">
+              <img
+                src="images/_Neo_4A_stim_inten_40Fp2_F4_Fzlugn_somn_PCIst_7.png"
+                alt="Neo 4A sovande PCIst 7"
+              />
+              <p class="image-caption">Neo 4A sovande (PCIst: 7)</p>
+            </div>
+
+            <!-- Item 2: Top-Right -->
+            <div class="grid-item fragment">
+              <img
+                src="images/Neo_4A_Lugn_vakenstim_inten_40F4_Fz_Fc2sluter_ogon_PCIst_14.png"
+                alt="Neo 4A vaken PCIst 14"
+              />
+              <p class="image-caption">Neo 4A vaken (PCIst: 14)</p>
+            </div>
+
+            <!-- Item 3: Bottom-Left -->
+            <div class="grid-item fragment">
+              <img
+                src="images/Neo3C_C4_P4_CP6_sover_PCIst_10.png"
+                alt="Neo 3C sovande PCIst 10"
+              />
+              <p class="image-caption">Neo 3C sovande (PCIst: 10)</p>
+            </div>
+
+            <!-- Item 4: Bottom-Right -->
+            <div class="grid-item fragment">
+              <img
+                src="images/Neo3C_C4_P4_CP6_vaken_PCIst_41.png"
+                alt="Neo 3C vaken PCIst 41"
+              />
+              <p class="image-caption">Neo 3C vaken (PCIst: 41)</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8: Q&A -->
+        <section>
+          <!-- This will appear first -->
+          <h2>Frågor?</h2>
+          <br />
+
+          <!-- Add class="fragment" to make this appear second -->
+          <p class="fragment">Tack!</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
